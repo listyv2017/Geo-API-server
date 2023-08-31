@@ -204,7 +204,7 @@ curl http://localhost:8080/address?postal_code=5016121
 
 これによる検索結果の出力はJSON形式でlogファイルとMySQLデータベースに保存される。確認方法は以下の通り。
 
-###　logファイル
+### logファイル
 
 以下のコマンドを用いて、サーバーコンテナ内で行われた操作に対する標準出力の表示を行う。docker-compose内でのサーバーコンテナ名は　`apiserver_ubuntu_1`
 
