@@ -1,0 +1,40 @@
+version: "3"
+services:
+  ubuntu:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    
+    ports:
+      - "127.0.0.1:8080:8080"
+    working_dir: /my_server_compose
+    volumes:
+      - ./:/my_server_compose
+    logging:
+      driver: "json-file" # ログドライバーを指定
+      options:
+        max-size: "10m"    # 各ログファイルの最大サイズ
+        max-file: "3"      # 保持するログファイル数
+    environment:
+      MYSQL_HOST: mysql # mysqlコンテナの指定
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 
+      MYSQL_DB: finatext
+      MYSQL_PORT: 3306
+    tty: true # 継続して実行する設定：ポート待ち受けなどしていないと、コンテナがする終了してしまうためこの設定が必要
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - '3306:3306'
+    volumes:
+      - logs_mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_PASSWORD: 
+      MYSQL_DB: finatext
+
+
+volumes:
+  logs_mysql_data: # ボリューム名を指定
