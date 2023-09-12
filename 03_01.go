@@ -20,9 +20,9 @@ import (
 // MySQLの接続情報
 const (
 	DBUsername = "root"
-	DBPassword = "Saya@///2023"
-	DBHost     = "localhost"
-	DBPort     = "3306"
+	DBPassword = ""
+	DBHost     = ""
+	DBPort     = ""
 	DBName     = "finatext"
 )
 
